@@ -1,0 +1,44 @@
+
+.navbar {
+    background-color: blueviolet;
+    margin-top: 10px;
+    padding: 30px;
+    width: 96%;
+    border-radius: 70px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    box-shadow: 0 0 10px blueviolet;
+    
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  li {
+    margin-right: 20px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  a:hover {
+    text-decoration: none;
+    font-size: 17px;
+    box-shadow: 0 0 30px rgb(239, 237, 237);
+  }
+
+  .text {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+  }
+  

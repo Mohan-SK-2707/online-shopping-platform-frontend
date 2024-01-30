@@ -1,26 +1,40 @@
-import './App.css';
-import './component/User/UserTable.css';
-import './component/NavBar/NavBar.css';
-import './component/Excel/ExcelTable.css';
-import './component/Orders/Orders.css';
-import './component/Security/Login.css';
-import 'semantic-ui-css/semantic.min.css'
-
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import NavBar from './component/NavBar/NavBar';
-import Login from './component/Security/Login';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import bannerImage from '../src/AFB.png';
+import Login from './Auth/Login';
+import NavigationBar from './Navigationbar/Navbar';
+import User from './User/User';
 
 function App() {
+
+
+
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<NavBar />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/*' element={<MainRoutes />} />
+      </Routes>
+      <ToastContainer />
     </Router>
   );
+
+  function MainRoutes() {
+    return (
+      <>
+        <NavigationBar />
+        <Routes>
+          <Route path='/home' element={<Home />} />
+          <Route path='/users' element={<User />} />
+        </Routes>
+      </>
+    );
+  }
 }
+
+const Home = () => (
+  <img src={bannerImage} alt="Banner" style={{ width: '95%', maxHeight: '70vh', height: '70vh', marginTop: '30px' }} />
+);
 
 export default App;
