@@ -1,0 +1,28 @@
+.reg {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 50%;
+    height: 70vh;
+    padding: 20px;
+    margin-top: 5.5rem;
+    margin-left: 20rem;
+    margin-right: 22rem;
+    border-radius: 15px;
+    max-width: 600;
+}
+
+.regform {
+    background-color: white;
+    width: 90%;
+    height: 70vh;
+    display: block;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.ant-form-item-label label {
+    font-family: 'Trebuchet MS';
+}
