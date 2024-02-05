@@ -1,11 +1,10 @@
-import { Button, Form, Input, message, Spin } from 'antd';
-import { React, useState } from 'react';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import '../Login/Login.css';
+import { Button, Form, Input, message, Spin } from 'antd';
 import axios from 'axios';
+import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
+import '../Login/Login.css';
+import Link from 'antd/es/typography/Link';
 
 
 const Login = () => {
@@ -37,7 +36,7 @@ const Login = () => {
                 setSpinner(false);
             }, 3000);
         } catch (error) {
-            if (error.response.data.errorMsg != '') {
+            if (error.response.data.errorMsg !== '') {
                 toast(error.response.data.errorMsg, 'error');
             } else {
                 toast(error.message, 'error');
@@ -56,6 +55,7 @@ const Login = () => {
             <Form initialValues={{
                 remember: true,
             }} className="loginform">
+                <h2>SIGN IN</h2>
                 <Form.Item label="EmailId" labelCol={{
                     span: 6,
                 }} wrapperCol={{
@@ -69,7 +69,14 @@ const Login = () => {
                     span: 15,
                 }} required rules={[{ required: true, message: 'Enter the emailId' }]}>
                     <Input.Password type="password" value={password} onChange={(e) => setPassword(e.target.value)} required iconRender={(visible) => visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />} />
-                    <Button style={{ marginTop: '8%', backgroundColor: 'ButtonShadow' }} onClick={doLogin}>Authenticate</Button>
+                    <Button style={{ marginTop: '15%', marginRight: '9%', backgroundColor: 'ButtonShadow', zIndex: 999, width: '50%' }} onClick={doLogin}>Sign In</Button>
+                </Form.Item>
+                <Form.Item style={{ padding: '10px', marginTop: '-26%', marginRight: '-67%' }} >
+                    <Link className="frgpwd"> Forgot password ?</Link>
+                </Form.Item>
+                <Form.Item style={{ padding: '10px', marginTop: '15%', marginRight: '16%', marginLeft: '19%' }}>
+                    Don't have an account yet ?
+                    <Link href='/signup'> Sign up</Link>
                 </Form.Item>
             </Form>
         </div>

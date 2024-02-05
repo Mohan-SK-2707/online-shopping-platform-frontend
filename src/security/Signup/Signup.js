@@ -4,6 +4,8 @@ import { Button, Checkbox, Form, Input, Modal, Spin, message } from "antd";
 import axios from 'axios';
 import React, { useState } from "react";
 import '../Signup/Signup.css';
+import  Login  from '../Login/Login.js';
+import Link from 'antd/es/typography/Link';
 
 
 const Signup = () => {
@@ -13,7 +15,7 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [userName, setUserName] = useState('');
     const [contactNo, setContactNo] = useState('');
-    const [open, setOpen] = useState(false);
+    const [addropen, setAddrrOpen] = useState(false);
     const [reg, setRegOpen] = useState(false);
     const [address, setAddress] = useState({ addressLine: '182/2w', city: 'Theni', state: 'Tamilnadu', pincode: '625536' }); {/**/ }
     const [spinner, setSpinner] = useState(false);
@@ -27,7 +29,12 @@ const Signup = () => {
     };
 
     const handleCheckboxClick = () => {
-        setRegOpen(true);
+        if (reg) {
+            setRegOpen(false);
+        } else {
+            setRegOpen(true);
+        }
+
     };
 
 
@@ -65,6 +72,7 @@ const Signup = () => {
             {contextHolder}
             <Spin spinning={spinner} fullscreen />
             <Form className="regform">
+                <h2>SIGN UP</h2>
                 <Form.Item label="First name" labelCol={{
                     span: 7,
                 }} wrapperCol={{
@@ -116,15 +124,15 @@ const Signup = () => {
                 }} wrapperCol={{
                     span: 10,
                 }}>
-                    <Button onClick={() => setOpen(true)} style={{ backgroundColor: 'ButtonShadow' }}>
+                    <Button onClick={() => setAddrrOpen(true)} style={{ backgroundColor: 'ButtonShadow' }}>
                         Add address
                     </Button>
                     <Modal
                         title="Add address"
                         centered
-                        open={open}
-                        onOk={() => setOpen(false) && setAddress({ addressLine: address.addressLine, city: address.city, state: address.state, pincode: address.pincode })}
-                        onCancel={() => setOpen(false)}
+                        open={addropen}
+                        onOk={() => setAddrrOpen(false) && setAddress({ addressLine: address.addressLine, city: address.city, state: address.state, pincode: address.pincode })}
+                        onCancel={() => setAddrrOpen(false)}
                         // onClick={}
                         width={900}
                         height={400}
@@ -159,8 +167,9 @@ const Signup = () => {
                         </Form.Item>
                     </Modal>
                 </Form.Item>
-                <Form.Item label="Policy terms" valuePropName="checked" required style={{ display: 'flex', marginTop: '20px', marginLeft: '10%' }}>
-                    <Checkbox onClick={handleCheckboxClick}>I agree with E-Com brand's privacy policy terms and conditions</Checkbox>
+                <Form.Item label="" valuePropName="checked" required style={{ display: 'flex', marginTop: '20px', marginLeft: '10%' }}>
+                    <Checkbox onClick={handleCheckboxClick}>I would like to know more about new arrivals promotions from
+                        E-Com and agree about the privacy policy terms and conditions</Checkbox>
                 </Form.Item>
                 <Form.Item labelCol={{
                     span: 7,
@@ -169,9 +178,11 @@ const Signup = () => {
                 }}>
                     <Button style={{ position: 'relative', left: '65%', backgroundColor: 'ButtonShadow' }} onClick={doSignup} disabled={!reg}  >Register</Button>
                 </Form.Item>
-                {/* <Form.Item label="Already a customer - SignIn">
-                    <Link target="_blank">SignIn</Link>
-                </Form.Item>*/ }
+                {/**/}
+                <Form.Item style={{ padding: '10px', marginTop: '-3%', marginRight: '16%', marginLeft: '14%' }}>
+                    Already have an account
+                    <Link href='/signin' >  Sign In</Link>
+                </Form.Item>
             </Form>
         </div>
     );

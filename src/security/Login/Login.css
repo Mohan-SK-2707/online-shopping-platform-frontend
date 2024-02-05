@@ -1,23 +1,37 @@
-.logincontainer{
-    /* background-color: whitesmoke; */
-    /* background-color: rgba(0, 0, 0, 0.5); */
+.logincontainer {
+    border-radius: 20px;
+    background-color: transparent;
+    /*  */
     justify-content: center;
-    display: flex;
-    margin-top: 3%;
-    margin-left: 15%;
+    margin-top: 6%;
+    margin-left: 20%;
     width: 50%;
-    padding: 10%;
+    padding: 5%;
+    box-shadow: 0 0 20px rgb(38, 44, 46);
+    background-position-x: left;
+    background-image: url("/src/2593068.jpg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    /* margin-bottom:20%;
+    margin-top: -10%;
+    height: 100vh;
+    */
 }
 
 
-
-.loginform{
-    background-color: whitesmoke;
+.loginform {
+    /**/
     border-radius: 10px;
     justify-content: center;
-    /* display: flex; */
-    /* margin-top: 10%;
-    margin-left: 15%; */
-    width: 70%;
+    background-color: transparent;
+    height: 50vh;
+    margin-top: 6%;
+    margin-left: 42%;
+    width: 73%;
     padding: 10%;
+}
+
+.frgpwd {
+    font-size: smaller;
 }
