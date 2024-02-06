@@ -13,7 +13,7 @@ const Dashboard = () => {
 
     return (
         <div className="container">
-            <Menu mode="horizontal" style={{ justifyContent: 'flex-end' }}>
+            <Menu mode="horizontal" style={{ justifyContent: 'flex-end', padding: '10px', backgroundColor: 'whitesmoke', boxShadow: '0 0 10px grey' }}>
                 <Menu.Item key="profile" icon={<UserOutlined />}>
                     <Link onClick={() => setOpenProfile(true)}>Profile</Link>
                 </Menu.Item>
@@ -24,12 +24,13 @@ const Dashboard = () => {
                     title="Profile"
                     style={{ textAlign: 'center', textAlignLast: 'center' }}
                     centered
-                    open={openProfile}
+                    open={openProfile}  
+                    onOk={() => setOpenProfile(false)}
                     width={700}
                     height={400}
-                    footer={null}
+
                 >
-                    <UserProfile id={1} />
+                    <UserProfile id={"650046c390fc095ba87e6472"} />
                 </Modal>
             </Menu>
             <Footer

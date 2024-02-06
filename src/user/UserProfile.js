@@ -3,9 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 
-const UserProfile = (id) => {
-    const [profile, setProfile] = useState(null);
-    const [loading, setLoading] = useState(true);
+const UserProfile = ({ id }) => {
+
+
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [emailId, setEmailId] = useState('');
@@ -14,21 +14,24 @@ const UserProfile = (id) => {
     const [addropen, setAddrrOpen] = useState(false);
 
 
-    useEffect((id) => {
+    useEffect(() => {
         const fetchUserProfile = async () => {
             try {
-                const profileResponse = await axios.get('http://localhost:8085/online-shopping-platform/user/' + id);
-                setProfile(profileResponse);
+                var url = `http://localhost:8085/online-shopping-platform/user/${encodeURIComponent(id)}`;
+                const profileResponse = await axios.get(url);
                 console.log(profileResponse);
+                setFirstName(profileResponse.data.firstName);
+                setLastName(profileResponse.data.lastName);
+                setEmailId(profileResponse.data.emailId);
+                setUserName(profileResponse.data.userName);
+                setContactNo(profileResponse.data.contactNo);
             } catch (error) {
                 console.error('Error fetching data:', error);
-            } finally {
-
             }
         };
 
         fetchUserProfile();
-    }, []);
+    }, [id]);
 
     return (
         <Form layout="horizontal" labelCol={{
@@ -37,19 +40,19 @@ const UserProfile = (id) => {
             span: 10
         }} style={{ marginTop: '6%' }}>
             <Form.Item label="First Name">
-                <Input label={firstName} disabled />
+                <Input value={firstName} />
             </Form.Item>
             <Form.Item label="Last Name">
-                <Input label={lastName} disabled />
+                <Input value={lastName} />
             </Form.Item>
             <Form.Item label="Email ID">
-                <Input label={emailId} disabled />
+                <Input value={emailId} />
             </Form.Item>
             <Form.Item label="Username">
-                <Input label={userName} disabled />
+                <Input value={userName} />
             </Form.Item>
             <Form.Item label="Contact Number">
-                <Input label={contactNo} disabled />
+                <Input value={contactNo} />
             </Form.Item>
         </Form>
     );

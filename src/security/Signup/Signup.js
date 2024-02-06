@@ -1,11 +1,10 @@
 
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Modal, Spin, message } from "antd";
+import Link from 'antd/es/typography/Link';
 import axios from 'axios';
 import React, { useState } from "react";
 import '../Signup/Signup.css';
-import  Login  from '../Login/Login.js';
-import Link from 'antd/es/typography/Link';
 
 
 const Signup = () => {
