@@ -73,7 +73,7 @@ const UserProfile = ({ id }) => {
             span: 10
         }} style={{ marginTop: '6%' }}>
             <Form.Item label="First Name">
-                <Input value={firstName} disabled />
+                <Input value={firstName} />
             </Form.Item>
             <Form.Item label="Last Name">
                 <Input value={lastName} />
