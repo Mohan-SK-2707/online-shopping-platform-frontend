@@ -1,4 +1,4 @@
-import { UserOutlined,LogoutOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import { Menu, Modal } from "antd";
 import { Footer } from "antd/es/layout/layout";
 import Link from 'antd/es/typography/Link';
@@ -48,17 +48,17 @@ const Dashboard = () => {
                 </Menu.Item>
                 <Menu.Item key="Logout" icon={<LogoutOutlined />}>
                     <Link href='/signin'>Logout</Link>
-                </Menu.Item> */}
+                </Menu.Item> onOk={() => setOpenProfile(false)} */}
             </Menu>
             <Modal
                 title="Profile"
                 style={{ textAlign: 'center', textAlignLast: 'center' }}
                 centered
                 open={openProfile}
-                onOk={() => setOpenProfile(false)}
+                onCancel={() => setOpenProfile(false)}
                 width={700}
                 height={700}
-
+                footer={[null]}
             >
                 <UserProfile id={"650046c390fc095ba87e6472"} />
             </Modal>
