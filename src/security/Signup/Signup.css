@@ -1,26 +1,27 @@
 .reg {
-    background-color: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
     width: 50%;
-    height: 80vh;
-    padding: 20px;
-    margin-top: 5.5rem;
-    margin-left: 24rem;
-    margin-right: 22rem;
-    border-radius: 15px;
+    height: 90%;
+    padding: 17px;
+    margin-top: 1.5%;
+    margin-left: 25%;
+    border-radius: 13px;
     max-width: 600;
+    position: sticky;
 }
 
 .regform {
-    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
     width: 90%;
-    height: 80vh;
+    height: 100%;
     display: block;
-    padding: 20px;
+    padding: 18px;
     border-radius: 10px;
+    margin-top: 0%;
+    max-width: 600;
 }
 
 .ant-form-item-label label {

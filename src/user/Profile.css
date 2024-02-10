@@ -1,0 +1,52 @@
+.side-nav {
+    /* width: 24%;
+    height: 75vh;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    box-sizing: border-box;
+    margin-top: -39%;
+    margin-right: 18%;
+    margin-left: 2%; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 24%;
+    height: 100vh; /* Use 100vh to make it cover the entire height of the viewport */
+    background-color: transparent; /* Change the background color as needed */
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    box-sizing: border-box; */
+    overflow-y: auto; /* Add scrollbar if content exceeds height */
+    padding-top: 7%;
+}
+
+.form-container {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    border-radius: 3px;
+    box-sizing: border-box;
+    width: 59%;
+    height: 33rem;
+    margin-top: 3%;
+    margin-right: 17%;
+    margin-left: 30%;
+}
+
+.ainput {
+    border-bottom: 1px solid whitesmoke;
+    border-radius: 1;
+    box-shadow: 'none';
+    border-style: 'unset'
+}
+
+.usr-prf{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-family: 'Trebuchet MS';
+}
+
+.usr-prf:hover{
+    color: aqua;
+}
+
+.address{
+    
+}
