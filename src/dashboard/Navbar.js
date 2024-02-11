@@ -38,9 +38,15 @@ const Navbar = () => {
     ];
 
 
-    return (                                                                                                                                                                                                                    
+    return (
         <div className="container">
-            <Menu mode="horizontal" onClick={(e) => setCurrent(e.key)} selectedKeys={[current]} items={items} style={{justifyContent: 'flex-end', padding: '10px', backgroundColor: 'whitesmoke', boxShadow: '0 0 10px grey' }}>
+            <Menu mode="horizontal" onClick={(e) => setCurrent(e.key)} selectedKeys={[current]} items={items} style={{
+                justifyContent: 'flex-end', padding: '10px', backgroundColor: 'whitesmoke', boxShadow: '0 0 10px grey', position: "fixed",
+                top: "0%",
+                left: "0%",
+                width: '100%',
+                zIndex:'1000'
+            }}>
             </Menu>
             <Footer
                 style={{
@@ -48,8 +54,9 @@ const Navbar = () => {
                     position: "fixed",
                     bottom: "0%",
                     left: "0%",
-                    width: '100%'
-                }} 
+                    width: '100%',
+                    zIndex:'1000'
+                }}
             >
                 E-Com ©{new Date().getFullYear()} Created by E-Com online shopping platform
             </Footer>

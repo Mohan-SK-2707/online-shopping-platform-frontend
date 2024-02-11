@@ -119,7 +119,7 @@ const UserProfile = ({ id }) => {
             <div className="side-nav">
                 <h1 >Account</h1>
                 <Divider></Divider>
-                <a href='/profile' className="usr-prf" >User Profile</a>
+                <a href='/account/profile' className="usr-prf" >User Profile</a>
                 <Divider></Divider>
                 <a href='/account/address' className="usr-prf" >Manage Address</a>
             </div></>
