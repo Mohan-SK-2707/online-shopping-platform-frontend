@@ -30,32 +30,52 @@ const Address = () => {
     const [deliveryCustomerNo, setDeliveryCustomerNo] = useState('');
     const [spinner, setSpinner] = useState(false);
     const [enableUpdate, setEnableUpdate] = useState(false);
+    const [enableAdd, setEnableAdd] = useState(false);
+    const [buttonName, setButtonName] = useState('');
     const [messageApi, contextHolder] = message.useMessage();
 
 
     useEffect(() => {
         const fetchAddressByUserId = async () => {
-            const addressResponse = await axios.get(`http://localhost:8085/online-shopping-platform/account/address/${encodeURIComponent('650046c390fc095ba87e6472')}`);
-            console.log(addressResponse.data);
-            setAddresses(addressResponse.data);
+            try {
+                const addressResponse = await axios.get(`http://localhost:8085/online-shopping-platform/account/address/${encodeURIComponent('650046c390fc095ba87e6472')}`);
+                console.log(addressResponse.data);
+                setAddresses(addressResponse.data);
+            } catch (error) {
+                console.error(error);
+                toast('error', 'Something went wrong...', 4);
+                setTimeout(() => {
+                    setSpinner(false);
+                }, 3000);
+            }
         };
 
         fetchAddressByUserId();
     }, []);
 
-    const fetchAddressById = async (id) => {
-        try {
-            const addressResponse = await axios.get(`http://localhost:8085/online-shopping-platform/account/address?id=${id}`);
-            console.log(addressResponse);
-            setId(addressResponse.data.id);
-            setCustomerName(addressResponse.data.customerName);
-            setAddress(addressResponse.data.address);
-            setCity(addressResponse.data.city);
-            setState(addressResponse.data.state);
-            setPincode(addressResponse.data.pincode);
-            setDeliveryCustomerNo(addressResponse.data.deliveryCustomerNo);
-        } catch (error) {
-            console.error(error);
+    const fetchAddressById = async (id,newAddress) => {
+        if (!(newAddress)) {
+            try {
+                const addressResponse = await axios.get(`http://localhost:8085/online-shopping-platform/account/address?id=${id}`);
+                console.log(addressResponse);
+                setId(addressResponse.data.id);
+
+                setCustomerName(addressResponse.data.customerName);
+                setAddress(addressResponse.data.address);
+                setCity(addressResponse.data.city);
+                setState(addressResponse.data.state);
+                setPincode(addressResponse.data.pincode);
+                setDeliveryCustomerNo(addressResponse.data.deliveryCustomerNo);
+
+            } catch (error) {
+                console.error(error);
+                toast('error', 'Something went wrong...', 4);
+                setTimeout(() => {
+                    setSpinner(false);
+                }, 3000);
+            }
+        } else {
+
         }
     }
 
@@ -79,35 +99,61 @@ const Address = () => {
         }
     };
 
-    const doUpdateAddress = async (addressId) => {
-        try {
-            setSpinner(true);
-            const updateAddressResponse = await axios.put(`http://localhost:8085/online-shopping-platform/account/address?id=${addressId}`, {
-                customerName: customerName,
-                primary: primary,
-                address: address,
-                city: city,
-                state: state,
-                pincode: pincode,
-                deliveryCustomerNo: deliveryCustomerNo
-            });
-            console.log(updateAddressResponse);
-            const addressResponse = await axios.get(`http://localhost:8085/online-shopping-platform/account/address/${encodeURIComponent('650046c390fc095ba87e6472')}`);
-            console.log(addressResponse.data);
-            setAddress(addressResponse.data);
-            const addressesResponse = await axios.get(`http://localhost:8085/online-shopping-platform/account/address/${encodeURIComponent('650046c390fc095ba87e6472')}`);
-            setAddresses(addressesResponse.data);
-            setEnableUpdate(false);
-            setTimeout(() => {
-                setSpinner(false);
-            }, 3000);
-            toast('success', 'Address updated', 2);
-        } catch (error) {
-            console.error(error);
-            toast('error', 'Something went wrong...', 4);
-            setTimeout(() => {
-                setSpinner(false);
-            }, 3000);
+    const doUpdateAddress = async (addressId, addNewAddress) => {
+        if (addNewAddress) {
+            try {
+                setSpinner(true);
+                const newAddressResponse = await axios.post(`http://localhost:8085/online-shopping-platform/account/address?customerId=${encodeURIComponent('650046c390fc095ba87e6472')}`, {
+                    customerName: customerName,
+                    primary: primary,
+                    address: address,
+                    city: city,
+                    state: state,
+                    pincode: pincode,
+                    deliveryCustomerNo: deliveryCustomerNo
+                });
+                console.log(newAddressResponse);
+                const addressesResponse = await axios.get(`http://localhost:8085/online-shopping-platform/account/address/${encodeURIComponent('650046c390fc095ba87e6472')}`);
+                setAddresses(addressesResponse.data);
+                setEnableUpdate(false);
+                setTimeout(() => {
+                    setSpinner(false);
+                }, 3000);
+                toast('success', 'Address added', 2);
+                fetchAddressById(id,false);
+            } catch (error) {
+
+            }
+        } else {
+            try {
+                setSpinner(true);
+                const updateAddressResponse = await axios.put(`http://localhost:8085/online-shopping-platform/account/address?id=${addressId}`, {
+                    customerName: customerName,
+                    primary: primary,
+                    address: address,
+                    city: city,
+                    state: state,
+                    pincode: pincode,
+                    deliveryCustomerNo: deliveryCustomerNo
+                });
+                console.log(updateAddressResponse);
+                const addressResponse = await axios.get(`http://localhost:8085/online-shopping-platform/account/address/${encodeURIComponent('650046c390fc095ba87e6472')}`);
+                console.log(addressResponse.data);
+                setAddress(addressResponse.data);
+                const addressesResponse = await axios.get(`http://localhost:8085/online-shopping-platform/account/address/${encodeURIComponent('650046c390fc095ba87e6472')}`);
+                setAddresses(addressesResponse.data);
+                setEnableUpdate(false);
+                setTimeout(() => {
+                    setSpinner(false);
+                }, 3000);
+                toast('success', 'Address updated', 2);
+            } catch (error) {
+                console.error(error);
+                toast('error', 'Something went wrong...', 4);
+                setTimeout(() => {
+                    setSpinner(false);
+                }, 3000);
+            }
         }
     };
 
@@ -118,6 +164,19 @@ const Address = () => {
             )),
         },
     ];
+
+    const handleAddClick = () => {
+        setEnableUpdate(true);
+        setEnableAdd(true);
+        setButtonName("Add");
+    }
+
+    const handleUpdateClick = (id) => {
+        setEnableUpdate(true);
+        fetchAddressById(id,false);
+        setEnableAdd(false);
+        setButtonName("Update");
+    } 
 
 
     return (
@@ -133,8 +192,8 @@ const Address = () => {
                 <a href='/account/address' className="usr-prf" >Manage Address</a>
             </div>
 
-            <div className="add-addr"> 
-            <span style={{ border: '10px',color:'darkgray' }} >Add Address</span>
+            <div className="add-addr">
+                <span style={{ border: '10px', color: 'darkgray', cursor: 'pointer' }} onClick={handleAddClick} >Add Address</span>
             </div>
             <div className="addrr">
                 <List
@@ -156,7 +215,7 @@ const Address = () => {
                                 >
                                     <span style={{ border: '10px' }}>Remove</span>
                                 </Popconfirm></>,
-                                <span style={{ border: '10px' }} onClick={() => fetchAddressById(addr.id) && setEnableUpdate(true)} >Edit</span> //doUpdateAddress(addr.id)}
+                                <span style={{ border: '10px' }} onClick={() => handleUpdateClick(addr.id)}>Edit</span> //doUpdateAddress(addr.id)}
                             ]} title={addr.primary ? 'Primary' : 'Secondary'} style={{ boxShadow: '0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24)' }}>
                                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', columnGap: '10%' }}>
                                     <p style={{ marginBottom: '4x' }}><strong>Customer Name:</strong> {addr.customerName}</p>
@@ -172,7 +231,7 @@ const Address = () => {
                 />
             </div>
             <Modal
-                title="Update Address"
+                title="User Address"
                 style={{
                     top: 20,
                 }}
@@ -203,7 +262,7 @@ const Address = () => {
                     <Form.Item label="Delivery customer No">
                         <Input type='text' onChange={(e) => setDeliveryCustomerNo(e.target.value)} value={deliveryCustomerNo} />
                     </Form.Item>
-                    <Button style={{ backgroundColor: 'ButtonShadow', marginLeft: '40%' }} onClick={() => doUpdateAddress(id)} >Update</Button>
+                    <Button style={{ backgroundColor: 'ButtonShadow', marginLeft: '40%' }} onClick={() => enableAdd ? doUpdateAddress(null, true) : doUpdateAddress(id, false)} >{buttonName}</Button>
                 </Form>
             </Modal>
         </>
